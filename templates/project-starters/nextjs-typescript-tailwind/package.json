@@ -1,0 +1,59 @@
+{
+  "name": "nextjs-typescript-tailwind-starter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Next.js 15 starter template with TypeScript, Tailwind CSS, and modern development tools",
+  "keywords": [
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "react",
+    "starter",
+    "template"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "next": "^15.1.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.4",
+    "@next/third-parties": "^15.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.1.8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-tailwindcss": "^3.17.5",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "jsdom": "^25.0.1"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
