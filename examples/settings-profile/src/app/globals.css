@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Settings specific animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes saveSuccess {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.fade-in-scale {
+  animation: fadeInScale 0.2s ease-out;
+}
+
+.save-success {
+  animation: saveSuccess 0.4s ease-in-out;
+}
+
+/* Avatar upload area */
+.avatar-upload {
+  position: relative;
+  @apply rounded-full overflow-hidden border-2 border-dashed border-muted-foreground/30;
+  transition: all 0.3s ease;
+}
+
+.avatar-upload:hover {
+  @apply border-primary/50 bg-primary/5;
+}
+
+.avatar-upload.dragover {
+  @apply border-primary bg-primary/10;
+}
+
+/* Settings sidebar navigation */
+.settings-nav-item {
+  @apply relative flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200;
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+.settings-nav-item.active {
+  @apply bg-primary text-primary-foreground;
+}
+
+.settings-nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  @apply bg-primary rounded-r-full;
+}
+
+/* Form sections with smooth transitions */
+.settings-section {
+  @apply space-y-6 p-6 border rounded-lg bg-card;
+  transition: all 0.2s ease;
+}
+
+.settings-section:hover {
+  @apply shadow-sm;
+}
+
+/* Toggle switch animations */
+.switch-thumb {
+  transition: transform 0.2s ease;
+}
+
+.switch-root[data-state="checked"] .switch-thumb {
+  transform: translateX(20px);
+}
+
+/* Slider customizations */
+.slider-track {
+  @apply bg-secondary relative h-2 w-full grow rounded-full;
+}
+
+.slider-range {
+  @apply absolute h-full bg-primary rounded-full;
+}
+
+.slider-thumb {
+  @apply block h-5 w-5 rounded-full border-2 border-primary bg-background;
+  @apply ring-offset-background transition-colors focus-visible:outline-none;
+  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+}
+
+/* File upload dropzone */
+.dropzone {
+  @apply border-2 border-dashed border-muted-foreground/30 rounded-lg p-8;
+  @apply transition-all duration-300 hover:border-primary/50 hover:bg-primary/5;
+}
+
+.dropzone.active {
+  @apply border-primary bg-primary/10;
+}
+
+.dropzone.accept {
+  @apply border-green-500 bg-green-50;
+}
+
+.dropzone.reject {
+  @apply border-red-500 bg-red-50;
+}
+
+/* Security activity timeline */
+.timeline-item {
+  position: relative;
+  @apply pl-6 pb-6;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  @apply bg-border;
+}
+
+.timeline-item:last-child::before {
+  height: 20px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  @apply bg-primary rounded-full border-2 border-background;
+}
+
+.timeline-dot.success {
+  @apply bg-green-500;
+}
+
+.timeline-dot.warning {
+  @apply bg-yellow-500;
+}
+
+.timeline-dot.error {
+  @apply bg-red-500;
+}
+
+/* Notification preference cards */
+.notification-card {
+  @apply p-4 rounded-lg border transition-all duration-200;
+  @apply hover:shadow-sm hover:border-primary/20;
+}
+
+.notification-card.enabled {
+  @apply bg-primary/5 border-primary/20;
+}
+
+/* Progress indicators */
+.progress-circle {
+  transform-origin: center;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+/* Data usage visualization */
+.usage-bar {
+  @apply h-2 rounded-full bg-secondary overflow-hidden;
+}
+
+.usage-fill {
+  @apply h-full transition-all duration-500 rounded-full;
+}
+
+.usage-fill.low {
+  @apply bg-green-500;
+}
+
+.usage-fill.medium {
+  @apply bg-yellow-500;
+}
+
+.usage-fill.high {
+  @apply bg-red-500;
+}
+
+/* Confirmation dialogs */
+.confirmation-overlay {
+  @apply fixed inset-0 bg-black/50 z-50;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.confirmation-dialog {
+  @apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  @apply bg-background border rounded-lg shadow-lg p-6 max-w-md w-full mx-4 z-50;
+  animation: slideInScale 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInScale {
+  from {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
