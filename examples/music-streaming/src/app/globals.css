@@ -1,0 +1,611 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 98%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 98%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262 83% 58%;
+    --radius: 0.75rem;
+    --chart-1: 262 83% 58%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 262 83% 58%;
+    --chart-1: 262 83% 58%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Music streaming specific styles */
+@layer components {
+  .music-gradient {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+  }
+
+  .music-card {
+    @apply bg-card border border-border rounded-xl shadow-sm transition-all duration-200 hover:shadow-md;
+  }
+
+  .music-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .track-card {
+    @apply music-card group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300;
+  }
+
+  .track-card:hover {
+    @apply transform -translate-y-1;
+  }
+
+  .album-cover {
+    @apply aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-105 rounded-lg;
+  }
+
+  .now-playing-bar {
+    @apply fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80 border-t z-50;
+  }
+
+  .player-controls {
+    @apply flex items-center justify-center gap-4;
+  }
+
+  .play-button {
+    @apply w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 transition-colors;
+  }
+
+  .control-button {
+    @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-accent transition-colors;
+  }
+
+  .progress-bar {
+    @apply w-full h-1 bg-muted rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-primary transition-all duration-100;
+  }
+
+  .volume-slider {
+    @apply w-20 h-1 bg-muted rounded-full;
+  }
+
+  .sidebar-nav {
+    @apply flex flex-col gap-1 p-2;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-accent transition-colors cursor-pointer;
+  }
+
+  .sidebar-item.active {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .playlist-item {
+    @apply flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors cursor-pointer group;
+  }
+
+  .track-row {
+    @apply flex items-center gap-4 p-2 rounded-lg hover:bg-accent/50 transition-colors group cursor-pointer;
+  }
+
+  .track-number {
+    @apply w-8 text-center text-muted-foreground text-sm group-hover:hidden;
+  }
+
+  .track-play-button {
+    @apply w-8 h-8 rounded-full bg-primary/10 text-primary hidden group-hover:flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors;
+  }
+
+  .track-info {
+    @apply flex-1 min-w-0;
+  }
+
+  .track-title {
+    @apply font-medium truncate;
+  }
+
+  .track-artist {
+    @apply text-sm text-muted-foreground truncate hover:text-foreground hover:underline cursor-pointer;
+  }
+
+  .track-album {
+    @apply text-sm text-muted-foreground truncate hover:text-foreground hover:underline cursor-pointer;
+  }
+
+  .track-duration {
+    @apply text-sm text-muted-foreground min-w-fit;
+  }
+
+  .genre-card {
+    @apply music-card p-6 cursor-pointer hover:shadow-lg transition-all duration-200 group relative overflow-hidden;
+  }
+
+  .genre-gradient {
+    @apply absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity;
+  }
+
+  .genre-title {
+    @apply font-semibold text-lg relative z-10;
+  }
+
+  .genre-description {
+    @apply text-sm text-muted-foreground mt-2 relative z-10;
+  }
+
+  .artist-card {
+    @apply music-card p-4 text-center cursor-pointer hover:shadow-lg transition-all duration-200 group;
+  }
+
+  .artist-avatar {
+    @apply w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden group-hover:scale-105 transition-transform;
+  }
+
+  .artist-name {
+    @apply font-semibold mb-1;
+  }
+
+  .artist-followers {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .search-bar {
+    @apply relative flex-1 max-w-md;
+  }
+
+  .search-input {
+    @apply w-full pl-10 pr-4 py-2 bg-muted border-0 rounded-full focus:bg-background focus:ring-2 focus:ring-primary;
+  }
+
+  .search-icon {
+    @apply absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4;
+  }
+
+  .waveform-container {
+    @apply w-full h-16 bg-muted/30 rounded-lg overflow-hidden;
+  }
+
+  .lyrics-container {
+    @apply space-y-4 p-6 max-h-96 overflow-y-auto;
+  }
+
+  .lyrics-line {
+    @apply py-2 px-4 rounded-lg cursor-pointer hover:bg-accent transition-colors;
+  }
+
+  .lyrics-line.active {
+    @apply bg-primary/10 text-primary font-medium;
+  }
+
+  .equalizer-container {
+    @apply flex items-end justify-center gap-1 h-12;
+  }
+
+  .equalizer-bar {
+    @apply w-1 bg-primary rounded-full transition-all duration-150;
+  }
+
+  .queue-item {
+    @apply flex items-center gap-3 p-2 rounded-lg hover:bg-accent/50 transition-colors;
+  }
+
+  .queue-item.current {
+    @apply bg-primary/10 text-primary;
+  }
+
+  .recommendation-card {
+    @apply music-card p-4 cursor-pointer hover:shadow-lg transition-all duration-200;
+  }
+
+  .mood-badge {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .mood-badge.energetic {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
+  }
+
+  .mood-badge.chill {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
+  }
+
+  .mood-badge.focus {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
+  }
+
+  .mood-badge.party {
+    @apply bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300;
+  }
+
+  .social-activity {
+    @apply flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors;
+  }
+
+  .activity-avatar {
+    @apply w-8 h-8 rounded-full;
+  }
+
+  .activity-content {
+    @apply flex-1 text-sm;
+  }
+
+  .activity-track {
+    @apply font-medium;
+  }
+
+  .activity-user {
+    @apply text-muted-foreground;
+  }
+
+  .activity-time {
+    @apply text-xs text-muted-foreground;
+  }
+
+  .stats-card {
+    @apply music-card p-6 text-center;
+  }
+
+  .stats-value {
+    @apply text-3xl font-bold text-primary mb-2;
+  }
+
+  .stats-label {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .stats-change {
+    @apply text-xs font-medium;
+  }
+
+  .stats-change.positive {
+    @apply text-green-600;
+  }
+
+  .stats-change.negative {
+    @apply text-red-600;
+  }
+}
+
+/* Music player animations */
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounceSubtle 0.6s ease-out;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-wave {
+    animation: wave 1.5s ease-in-out infinite;
+  }
+
+  .animate-slide-up-fade {
+    animation: slideUpFade 0.4s ease-out;
+  }
+
+  .animate-music-note {
+    animation: musicNote 3s ease-in-out infinite;
+  }
+}
+
+@keyframes bounceSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes musicNote {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-3deg);
+  }
+}
+
+/* Scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-muted/30;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
+}
+
+/* Music visualization */
+.visualizer {
+  @apply flex items-center justify-center gap-1 h-8;
+}
+
+.visualizer-bar {
+  @apply w-1 bg-primary rounded-full opacity-70;
+  animation: visualizer 0.5s ease-in-out infinite alternate;
+}
+
+.visualizer-bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.visualizer-bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.visualizer-bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.visualizer-bar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+@keyframes visualizer {
+  from {
+    height: 4px;
+  }
+  to {
+    height: 20px;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .now-playing-bar {
+    @apply px-4 py-3;
+  }
+  
+  .track-card {
+    @apply text-sm;
+  }
+  
+  .search-input {
+    @apply text-sm;
+  }
+  
+  .sidebar-nav {
+    @apply px-2;
+  }
+  
+  .track-row {
+    @apply px-2 py-1;
+  }
+}
+
+/* Print styles */
+@media print {
+  .now-playing-bar,
+  .sidebar-nav {
+    @apply hidden;
+  }
+  
+  .music-card {
+    @apply shadow-none border;
+  }
+  
+  .no-print {
+    @apply hidden;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .track-card {
+    @apply border-2;
+  }
+  
+  .music-button {
+    @apply border-2;
+  }
+  
+  .play-button {
+    @apply border-2 border-primary-foreground;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .track-card:hover {
+    @apply transform-none;
+  }
+  
+  .animate-spin-slow,
+  .animate-bounce-subtle,
+  .animate-pulse-glow,
+  .animate-wave,
+  .animate-slide-up-fade,
+  .animate-music-note {
+    animation: none;
+  }
+  
+  .album-cover {
+    @apply transform-none;
+  }
+  
+  .visualizer-bar {
+    animation: none;
+    height: 12px;
+  }
+}
+
+/* Audio player specific styles */
+.audio-controls {
+  @apply flex items-center gap-2;
+}
+
+.volume-control {
+  @apply flex items-center gap-2;
+}
+
+.repeat-button {
+  @apply control-button;
+}
+
+.repeat-button.active {
+  @apply text-primary;
+}
+
+.shuffle-button {
+  @apply control-button;
+}
+
+.shuffle-button.active {
+  @apply text-primary;
+}
+
+/* Playlist styles */
+.playlist-cover {
+  @apply aspect-square w-full object-cover rounded-lg;
+}
+
+.playlist-grid {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .playlist-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    @apply gap-4;
+  }
+}
+
+/* Loading states */
+.skeleton {
+  @apply bg-muted animate-pulse rounded;
+}
+
+.skeleton-text {
+  @apply skeleton h-4 w-full;
+}
+
+.skeleton-title {
+  @apply skeleton h-6 w-3/4;
+}
+
+.skeleton-cover {
+  @apply skeleton aspect-square w-full;
+}
+
+/* Focus states */
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+}
+
+/* Music streaming specific components */
+.genre-grid {
+  @apply grid gap-4;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.artist-grid {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .genre-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    @apply gap-3;
+  }
+  
+  .artist-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    @apply gap-4;
+  }
+}
