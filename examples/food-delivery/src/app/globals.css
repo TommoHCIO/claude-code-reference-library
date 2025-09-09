@@ -1,0 +1,722 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 16 100% 66%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 98%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 98%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 16 100% 66%;
+    --radius: 0.75rem;
+    --chart-1: 16 100% 66%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 16 100% 66%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 16 100% 66%;
+    --chart-1: 16 100% 66%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Food delivery specific styles */
+@layer components {
+  .food-gradient {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  }
+
+  .food-card {
+    @apply bg-card border border-border rounded-xl shadow-sm transition-all duration-200 hover:shadow-md;
+  }
+
+  .food-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .restaurant-card {
+    @apply food-card group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300;
+  }
+
+  .restaurant-card:hover {
+    @apply transform -translate-y-1;
+  }
+
+  .restaurant-image {
+    @apply aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105;
+  }
+
+  .restaurant-badge {
+    @apply absolute top-3 left-3 z-10 px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .restaurant-badge.featured {
+    @apply bg-yellow-500 text-white;
+  }
+
+  .restaurant-badge.promoted {
+    @apply bg-blue-500 text-white;
+  }
+
+  .restaurant-badge.new {
+    @apply bg-green-500 text-white;
+  }
+
+  .restaurant-badge.free-delivery {
+    @apply bg-purple-500 text-white;
+  }
+
+  .delivery-badge {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .delivery-badge.fast {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
+  }
+
+  .delivery-badge.standard {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
+  }
+
+  .delivery-badge.scheduled {
+    @apply bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300;
+  }
+
+  .food-item-card {
+    @apply food-card group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300;
+  }
+
+  .food-item-image {
+    @apply aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-105;
+  }
+
+  .food-item-title {
+    @apply font-semibold text-lg line-clamp-2 group-hover:text-primary transition-colors;
+  }
+
+  .food-item-description {
+    @apply text-sm text-muted-foreground line-clamp-2;
+  }
+
+  .food-item-price {
+    @apply font-bold text-xl text-primary;
+  }
+
+  .food-item-original-price {
+    @apply text-sm text-muted-foreground line-through ml-2;
+  }
+
+  .restaurant-rating {
+    @apply flex items-center gap-1;
+  }
+
+  .rating-stars {
+    @apply flex items-center;
+  }
+
+  .rating-count {
+    @apply text-sm text-muted-foreground ml-1;
+  }
+
+  .cuisine-card {
+    @apply food-card p-6 text-center cursor-pointer hover:shadow-lg transition-all duration-200 group relative overflow-hidden;
+  }
+
+  .cuisine-gradient {
+    @apply absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity;
+  }
+
+  .cuisine-icon {
+    @apply w-12 h-12 mx-auto mb-4 text-primary group-hover:scale-110 transition-transform;
+  }
+
+  .cuisine-name {
+    @apply font-semibold text-lg relative z-10;
+  }
+
+  .cuisine-count {
+    @apply text-sm text-muted-foreground mt-2 relative z-10;
+  }
+
+  .search-bar {
+    @apply relative flex-1 max-w-2xl;
+  }
+
+  .search-input {
+    @apply w-full pl-12 pr-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+
+  .search-icon {
+    @apply absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground;
+  }
+
+  .filter-section {
+    @apply space-y-4 p-4 border rounded-lg;
+  }
+
+  .filter-title {
+    @apply font-semibold text-sm uppercase tracking-wide text-muted-foreground mb-3;
+  }
+
+  .filter-option {
+    @apply flex items-center space-x-2 cursor-pointer hover:text-primary transition-colors;
+  }
+
+  .price-range {
+    @apply space-y-3;
+  }
+
+  .cart-item {
+    @apply flex items-center space-x-4 p-4 border rounded-lg;
+  }
+
+  .cart-item-image {
+    @apply w-16 h-16 rounded-lg object-cover;
+  }
+
+  .cart-item-details {
+    @apply flex-1 min-w-0;
+  }
+
+  .cart-item-title {
+    @apply font-medium truncate;
+  }
+
+  .cart-item-restaurant {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .cart-item-price {
+    @apply text-primary font-semibold;
+  }
+
+  .cart-item-quantity {
+    @apply flex items-center space-x-2;
+  }
+
+  .quantity-btn {
+    @apply w-8 h-8 rounded-full border flex items-center justify-center hover:bg-accent transition-colors;
+  }
+
+  .order-summary {
+    @apply space-y-3 p-4 bg-muted/50 rounded-lg;
+  }
+
+  .order-summary-row {
+    @apply flex items-center justify-between text-sm;
+  }
+
+  .order-total {
+    @apply flex items-center justify-between font-bold text-lg pt-3 border-t;
+  }
+
+  .delivery-time {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
+  }
+
+  .restaurant-info {
+    @apply space-y-2;
+  }
+
+  .restaurant-name {
+    @apply font-semibold text-xl;
+  }
+
+  .restaurant-description {
+    @apply text-muted-foreground;
+  }
+
+  .restaurant-stats {
+    @apply flex items-center gap-4 text-sm text-muted-foreground;
+  }
+
+  .delivery-info {
+    @apply flex items-center justify-between p-4 bg-muted/30 rounded-lg;
+  }
+
+  .delivery-time-slot {
+    @apply p-3 border rounded-lg cursor-pointer hover:bg-accent transition-colors;
+  }
+
+  .delivery-time-slot.selected {
+    @apply border-primary bg-primary/5;
+  }
+
+  .payment-method {
+    @apply flex items-center space-x-3 p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors;
+  }
+
+  .payment-method.selected {
+    @apply border-primary bg-primary/5;
+  }
+
+  .order-status {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .order-status.confirmed {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
+  }
+
+  .order-status.preparing {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300;
+  }
+
+  .order-status.on-the-way {
+    @apply bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300;
+  }
+
+  .order-status.delivered {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
+  }
+
+  .order-status.cancelled {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
+  }
+
+  .order-tracking {
+    @apply space-y-4;
+  }
+
+  .tracking-step {
+    @apply flex items-center space-x-4 p-4 relative;
+  }
+
+  .tracking-step::before {
+    @apply absolute left-8 top-16 w-px h-full bg-border content-[''];
+  }
+
+  .tracking-step:last-child::before {
+    @apply hidden;
+  }
+
+  .tracking-icon {
+    @apply w-8 h-8 rounded-full border-2 border-primary bg-background flex items-center justify-center z-10;
+  }
+
+  .tracking-icon.completed {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .tracking-icon.current {
+    @apply border-primary bg-primary/10 text-primary animate-pulse;
+  }
+
+  .tracking-content {
+    @apply flex-1;
+  }
+
+  .tracking-title {
+    @apply font-medium;
+  }
+
+  .tracking-time {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .driver-info {
+    @apply flex items-center space-x-4 p-4 border rounded-lg;
+  }
+
+  .driver-avatar {
+    @apply w-12 h-12 rounded-full;
+  }
+
+  .driver-details {
+    @apply flex-1;
+  }
+
+  .driver-name {
+    @apply font-medium;
+  }
+
+  .driver-rating {
+    @apply flex items-center gap-1 text-sm;
+  }
+
+  .driver-vehicle {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .map-container {
+    @apply w-full h-64 rounded-lg overflow-hidden border;
+  }
+
+  .category-slider {
+    @apply flex gap-4 overflow-x-auto pb-2 scrollbar-hide;
+  }
+
+  .category-item {
+    @apply flex-shrink-0 flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-accent transition-colors cursor-pointer;
+  }
+
+  .category-icon {
+    @apply w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center;
+  }
+
+  .category-name {
+    @apply text-sm font-medium whitespace-nowrap;
+  }
+
+  .promotional-banner {
+    @apply food-gradient text-white p-6 rounded-lg text-center relative overflow-hidden;
+  }
+
+  .promo-background {
+    @apply absolute inset-0 opacity-10;
+  }
+
+  .promo-title {
+    @apply text-2xl font-bold mb-2 relative z-10;
+  }
+
+  .promo-description {
+    @apply relative z-10 mb-4;
+  }
+
+  .promo-code {
+    @apply inline-block bg-white/20 px-4 py-2 rounded-full font-mono text-sm font-semibold relative z-10;
+  }
+
+  .restaurant-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .food-item-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .cuisine-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .breadcrumb {
+    @apply flex items-center space-x-2 text-sm text-muted-foreground;
+  }
+
+  .breadcrumb-item {
+    @apply hover:text-foreground transition-colors cursor-pointer;
+  }
+
+  .breadcrumb-separator {
+    @apply text-muted-foreground;
+  }
+
+  .notification-item {
+    @apply flex items-start space-x-3 p-4 border-b hover:bg-accent transition-colors cursor-pointer;
+  }
+
+  .notification-icon {
+    @apply w-10 h-10 rounded-full flex items-center justify-center;
+  }
+
+  .notification-content {
+    @apply flex-1;
+  }
+
+  .notification-title {
+    @apply font-medium;
+  }
+
+  .notification-message {
+    @apply text-sm text-muted-foreground mt-1;
+  }
+
+  .notification-time {
+    @apply text-xs text-muted-foreground mt-2;
+  }
+}
+
+/* Food delivery animations */
+@layer utilities {
+  .animate-food-bounce {
+    animation: foodBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .animate-delivery-pulse {
+    animation: deliveryPulse 2s ease-in-out infinite;
+  }
+
+  .animate-order-slide {
+    animation: orderSlide 0.4s ease-out;
+  }
+
+  .animate-cart-add {
+    animation: cartAdd 0.5s ease-out;
+  }
+
+  .animate-restaurant-hover {
+    animation: restaurantHover 0.3s ease-out;
+  }
+
+  .animate-cooking {
+    animation: cooking 2s ease-in-out infinite;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes foodBounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes deliveryPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.6);
+  }
+}
+
+@keyframes orderSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cartAdd {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  75% {
+    transform: scale(0.9) rotate(-5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes restaurantHover {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cooking {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .restaurant-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    @apply gap-4;
+  }
+  
+  .food-item-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    @apply gap-3;
+  }
+  
+  .cuisine-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    @apply gap-3;
+  }
+  
+  .search-input {
+    @apply pl-10 py-2 text-sm;
+  }
+  
+  .search-icon {
+    @apply left-3 w-4 h-4;
+  }
+  
+  .restaurant-card {
+    @apply text-sm;
+  }
+}
+
+/* Cart sidebar styles */
+.cart-sidebar {
+  @apply fixed top-0 right-0 h-full w-96 bg-card border-l shadow-2xl transform transition-transform duration-300 ease-in-out z-50;
+}
+
+.cart-sidebar.open {
+  @apply translate-x-0;
+}
+
+.cart-sidebar.closed {
+  @apply translate-x-full;
+}
+
+@media (max-width: 768px) {
+  .cart-sidebar {
+    @apply w-full;
+  }
+}
+
+/* Print styles for orders */
+@media print {
+  .restaurant-card,
+  .cart-item {
+    @apply shadow-none border;
+  }
+  
+  .food-button {
+    @apply hidden;
+  }
+  
+  .order-summary {
+    @apply bg-transparent;
+  }
+  
+  .no-print {
+    @apply hidden;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .restaurant-card {
+    @apply border-2;
+  }
+  
+  .food-button {
+    @apply border-2;
+  }
+  
+  .restaurant-badge {
+    @apply border border-white;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .restaurant-card:hover {
+    @apply transform-none;
+  }
+  
+  .animate-food-bounce,
+  .animate-delivery-pulse,
+  .animate-order-slide,
+  .animate-cart-add,
+  .animate-restaurant-hover,
+  .animate-cooking {
+    animation: none;
+  }
+  
+  .restaurant-image {
+    @apply transform-none;
+  }
+}
+
+/* Loading states */
+.skeleton {
+  @apply bg-muted animate-pulse rounded;
+}
+
+.skeleton-text {
+  @apply skeleton h-4 w-full;
+}
+
+.skeleton-title {
+  @apply skeleton h-6 w-3/4;
+}
+
+.skeleton-image {
+  @apply skeleton aspect-[4/3] w-full;
+}
+
+/* Custom food delivery components */
+.delivery-eta {
+  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 text-sm font-medium;
+}
+
+.restaurant-hours {
+  @apply text-sm text-muted-foreground;
+}
+
+.restaurant-hours.open {
+  @apply text-green-600;
+}
+
+.restaurant-hours.closed {
+  @apply text-red-600;
+}
+
+.distance-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full bg-muted text-muted-foreground text-xs;
+}
