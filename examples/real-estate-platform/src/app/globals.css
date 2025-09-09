@@ -1,0 +1,621 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 98%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 98%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142 76% 36%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142 76% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Real Estate specific styles */
+@layer components {
+  .realestate-gradient {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  }
+
+  .realestate-card {
+    @apply bg-card border border-border rounded-xl shadow-sm transition-all duration-200 hover:shadow-md;
+  }
+
+  .realestate-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .property-card {
+    @apply realestate-card group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300;
+  }
+
+  .property-card:hover {
+    @apply transform -translate-y-1;
+  }
+
+  .property-image {
+    @apply aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105;
+  }
+
+  .property-badge {
+    @apply absolute top-3 left-3 z-10 px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .property-badge.for-sale {
+    @apply bg-blue-500 text-white;
+  }
+
+  .property-badge.for-rent {
+    @apply bg-green-500 text-white;
+  }
+
+  .property-badge.sold {
+    @apply bg-gray-500 text-white;
+  }
+
+  .property-badge.pending {
+    @apply bg-yellow-500 text-white;
+  }
+
+  .property-badge.featured {
+    @apply bg-purple-500 text-white;
+  }
+
+  .property-price {
+    @apply font-bold text-xl text-primary;
+  }
+
+  .property-price-per-unit {
+    @apply text-sm text-muted-foreground ml-2;
+  }
+
+  .property-title {
+    @apply font-semibold text-lg line-clamp-2 group-hover:text-primary transition-colors;
+  }
+
+  .property-address {
+    @apply text-sm text-muted-foreground line-clamp-1;
+  }
+
+  .property-stats {
+    @apply flex items-center justify-between text-sm text-muted-foreground;
+  }
+
+  .property-stat {
+    @apply flex items-center gap-1;
+  }
+
+  .agent-card {
+    @apply realestate-card p-6 text-center cursor-pointer hover:shadow-lg transition-all duration-200 group;
+  }
+
+  .agent-avatar {
+    @apply w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden group-hover:scale-110 transition-transform;
+  }
+
+  .agent-name {
+    @apply font-semibold text-lg mb-1;
+  }
+
+  .agent-title {
+    @apply text-sm text-muted-foreground mb-2;
+  }
+
+  .agent-rating {
+    @apply flex items-center justify-center gap-1 mb-2;
+  }
+
+  .filter-section {
+    @apply space-y-4 p-4 border rounded-lg;
+  }
+
+  .filter-title {
+    @apply font-semibold text-sm uppercase tracking-wide text-muted-foreground mb-3;
+  }
+
+  .filter-option {
+    @apply flex items-center space-x-2 cursor-pointer hover:text-primary transition-colors;
+  }
+
+  .price-range {
+    @apply space-y-3;
+  }
+
+  .search-bar {
+    @apply relative flex-1 max-w-2xl;
+  }
+
+  .search-input {
+    @apply w-full pl-12 pr-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+
+  .search-icon {
+    @apply absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground;
+  }
+
+  .map-container {
+    @apply w-full h-96 rounded-lg overflow-hidden border;
+  }
+
+  .listing-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .dashboard-card {
+    @apply realestate-card p-6;
+  }
+
+  .dashboard-metric {
+    @apply text-center;
+  }
+
+  .dashboard-metric-value {
+    @apply text-3xl font-bold text-primary mb-2;
+  }
+
+  .dashboard-metric-label {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .dashboard-metric-change {
+    @apply text-xs font-medium;
+  }
+
+  .dashboard-metric-change.positive {
+    @apply text-green-600;
+  }
+
+  .dashboard-metric-change.negative {
+    @apply text-red-600;
+  }
+
+  .tenant-card {
+    @apply flex items-center space-x-4 p-4 border rounded-lg hover:bg-accent transition-colors;
+  }
+
+  .tenant-avatar {
+    @apply w-12 h-12 rounded-full overflow-hidden;
+  }
+
+  .tenant-details {
+    @apply flex-1 min-w-0;
+  }
+
+  .tenant-name {
+    @apply font-medium truncate;
+  }
+
+  .tenant-property {
+    @apply text-sm text-muted-foreground truncate;
+  }
+
+  .tenant-status {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .tenant-status.current {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
+  }
+
+  .tenant-status.pending {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300;
+  }
+
+  .tenant-status.former {
+    @apply bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300;
+  }
+
+  .maintenance-card {
+    @apply p-4 border rounded-lg space-y-3;
+  }
+
+  .maintenance-header {
+    @apply flex items-center justify-between;
+  }
+
+  .maintenance-title {
+    @apply font-medium;
+  }
+
+  .maintenance-priority {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .maintenance-priority.high {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
+  }
+
+  .maintenance-priority.medium {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300;
+  }
+
+  .maintenance-priority.low {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
+  }
+
+  .maintenance-description {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .maintenance-meta {
+    @apply flex items-center justify-between text-xs text-muted-foreground;
+  }
+
+  .calendar-grid {
+    @apply grid grid-cols-7 gap-1;
+  }
+
+  .calendar-day {
+    @apply aspect-square flex items-center justify-center text-sm border rounded cursor-pointer hover:bg-accent transition-colors;
+  }
+
+  .calendar-day.today {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .calendar-day.selected {
+    @apply bg-accent ring-2 ring-primary;
+  }
+
+  .calendar-day.other-month {
+    @apply text-muted-foreground;
+  }
+
+  .financial-summary {
+    @apply space-y-4 p-4 bg-muted/50 rounded-lg;
+  }
+
+  .financial-row {
+    @apply flex items-center justify-between text-sm;
+  }
+
+  .financial-total {
+    @apply flex items-center justify-between font-bold text-lg pt-3 border-t;
+  }
+
+  .lease-timeline {
+    @apply relative;
+  }
+
+  .lease-timeline-item {
+    @apply flex items-center space-x-4 p-3 relative;
+  }
+
+  .lease-timeline-item::before {
+    @apply absolute left-6 top-12 w-px h-full bg-border content-[''];
+  }
+
+  .lease-timeline-item:last-child::before {
+    @apply hidden;
+  }
+
+  .lease-timeline-icon {
+    @apply w-8 h-8 rounded-full border-2 border-primary bg-background flex items-center justify-center z-10;
+  }
+
+  .lease-timeline-content {
+    @apply flex-1;
+  }
+
+  .lease-timeline-title {
+    @apply font-medium;
+  }
+
+  .lease-timeline-date {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .document-list {
+    @apply space-y-2;
+  }
+
+  .document-item {
+    @apply flex items-center space-x-3 p-3 border rounded-lg hover:bg-accent cursor-pointer transition-colors;
+  }
+
+  .document-icon {
+    @apply w-10 h-10 rounded bg-muted flex items-center justify-center;
+  }
+
+  .document-details {
+    @apply flex-1 min-w-0;
+  }
+
+  .document-name {
+    @apply font-medium truncate;
+  }
+
+  .document-meta {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .breadcrumb {
+    @apply flex items-center space-x-2 text-sm text-muted-foreground;
+  }
+
+  .breadcrumb-item {
+    @apply hover:text-foreground transition-colors cursor-pointer;
+  }
+
+  .breadcrumb-separator {
+    @apply text-muted-foreground;
+  }
+
+  .notification-item {
+    @apply flex items-start space-x-3 p-4 border-b hover:bg-accent transition-colors cursor-pointer;
+  }
+
+  .notification-icon {
+    @apply w-10 h-10 rounded-full flex items-center justify-center;
+  }
+
+  .notification-content {
+    @apply flex-1;
+  }
+
+  .notification-title {
+    @apply font-medium;
+  }
+
+  .notification-message {
+    @apply text-sm text-muted-foreground mt-1;
+  }
+
+  .notification-time {
+    @apply text-xs text-muted-foreground mt-2;
+  }
+}
+
+/* Real estate animations */
+@layer utilities {
+  .animate-property-hover {
+    animation: propertyHover 0.3s ease-out;
+  }
+
+  .animate-map-bounce {
+    animation: mapBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .animate-price-flash {
+    animation: priceFlash 1s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+}
+
+@keyframes propertyHover {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes mapBounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes priceFlash {
+  0%, 100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: hsl(var(--primary) / 0.1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Map styles */
+.leaflet-container {
+  @apply rounded-lg;
+}
+
+.leaflet-popup-content {
+  @apply text-sm;
+}
+
+.custom-marker {
+  @apply bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold shadow-lg;
+}
+
+.custom-marker.cluster {
+  @apply bg-primary/80;
+}
+
+/* Property grid responsive */
+.property-grid {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .property-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    @apply gap-4;
+  }
+}
+
+/* Filter sidebar */
+.filter-sidebar {
+  @apply w-80 space-y-6;
+}
+
+@media (max-width: 1024px) {
+  .filter-sidebar {
+    @apply w-full;
+  }
+}
+
+/* Dashboard responsive grid */
+.dashboard-grid {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    @apply gap-4;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .property-card {
+    @apply text-sm;
+  }
+  
+  .search-input {
+    @apply pl-10 py-2 text-sm;
+  }
+  
+  .search-icon {
+    @apply left-3 w-4 h-4;
+  }
+  
+  .property-price {
+    @apply text-lg;
+  }
+  
+  .property-title {
+    @apply text-base;
+  }
+}
+
+/* Print styles for reports */
+@media print {
+  .property-card,
+  .dashboard-card {
+    @apply shadow-none border;
+  }
+  
+  .realestate-button {
+    @apply hidden;
+  }
+  
+  .financial-summary {
+    @apply bg-transparent;
+  }
+  
+  .no-print {
+    @apply hidden;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .property-card {
+    @apply border-2;
+  }
+  
+  .realestate-button {
+    @apply border-2;
+  }
+  
+  .property-badge {
+    @apply border border-white;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .property-card:hover {
+    @apply transform-none;
+  }
+  
+  .animate-property-hover,
+  .animate-map-bounce,
+  .animate-price-flash,
+  .animate-slide-up,
+  .animate-fade-in-up {
+    animation: none;
+  }
+  
+  .property-image {
+    @apply transform-none;
+  }
+}
